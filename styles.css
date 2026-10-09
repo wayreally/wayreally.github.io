@@ -505,15 +505,20 @@ body {
   position: absolute;
   z-index: 30;
   top: calc(100% + 1.35rem);
-  left: 0;
-  min-width: 8rem;
+  left: -.75rem;
+  width: max-content;
+  min-width: calc(100% + 1.5rem);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  border-radius: .45rem .45rem .7rem .7rem;
   color: var(--ink);
   background: rgba(17, 20, 22, .98);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-.65rem);
+  transform: translateY(-.7rem) scaleY(.82);
+  transform-origin: top;
   visibility: hidden;
   transition: opacity 180ms ease,
     transform 220ms cubic-bezier(.22, .75, .25, 1),
@@ -530,7 +535,7 @@ body {
 
 .profile-menu-panel a {
   display: block;
-  padding: .75rem .9rem;
+  padding: .85rem 1rem .9rem;
   color: inherit;
   font-size: .75rem;
   letter-spacing: .06em;
@@ -1394,6 +1399,10 @@ body.projects-active {
 
   .nav-set {
     justify-content: start;
+  }
+
+  .profile-menu-panel {
+    top: calc(100% + 3.25rem);
   }
 
   .portfolio-section {
