@@ -6,7 +6,7 @@ const projectsView = document.querySelector('[data-projects-view]');
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const projectButtons = [...document.querySelectorAll('[data-project-target]')];
 const projectPanels = [...document.querySelectorAll('[data-project-panel]')];
-const projectVideos = [...document.querySelectorAll('[data-project-video]')];
+const projectVideos = [...document.querySelectorAll('.project-video-preview')];
 
 function pauseProjectVideos(except = null) {
   projectVideos.forEach((video) => {
@@ -15,22 +15,41 @@ function pauseProjectVideos(except = null) {
 }
 
 function selectProject(projectId) {
+  const currentIndex = projectPanels.findIndex((panel) => panel.classList.contains('is-active'));
+  const nextIndex = projectPanels.findIndex((panel) => panel.dataset.projectPanel === projectId);
+
+  if (nextIndex < 0 || nextIndex === currentIndex) return;
+
   projectButtons.forEach((button) => {
     const isActive = button.dataset.projectTarget === projectId;
     button.classList.toggle('is-active', isActive);
     button.setAttribute('aria-pressed', String(isActive));
   });
 
-  projectPanels.forEach((panel) => {
-    const isActive = panel.dataset.projectPanel === projectId;
-    if (!isActive) {
-      panel.querySelectorAll('[data-project-video]').forEach((video) => video.pause());
-    }
-    panel.classList.toggle('is-active', isActive);
-    panel.hidden = !isActive;
-  });
-
   window.scrollTo({ top: 0, behavior: 'auto' });
+
+  const currentPanel = projectPanels[currentIndex];
+  const nextPanel = projectPanels[nextIndex];
+  const direction = nextIndex > currentIndex ? 1 : -1;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  currentPanel.querySelectorAll('.project-video-preview').forEach((video) => video.pause());
+
+  currentPanel.classList.remove('is-active');
+  currentPanel.hidden = true;
+  nextPanel.hidden = false;
+  nextPanel.classList.add('is-active');
+
+  if (!reduceMotion && nextPanel.animate) {
+    nextPanel.animate([
+      { opacity: 0, transform: `translateX(${direction * 1.5}rem)` },
+      { opacity: 1, transform: 'translateX(0)' }
+    ], {
+      duration: 240,
+      easing: 'cubic-bezier(.22, .75, .25, 1)',
+      fill: 'none'
+    });
+  }
 }
 
 function setProjectsView(isProjectsView) {
@@ -65,3 +84,4 @@ document.addEventListener('keydown', (event) => {
     projectsButton.focus();
   }
 });
+

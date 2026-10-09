@@ -30,7 +30,9 @@ function showMedia(index) {
     if (item.dataset.poster) fullVideo.poster = item.dataset.poster;
     fullVideo.setAttribute('aria-label', mediaLabel);
     fullVideo.hidden = false;
-    fullVideo.play().catch(() => {});
+    fullVideo.load();
+    const playback = fullVideo.play();
+    if (playback) playback.catch(() => {});
     return;
   }
 
