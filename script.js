@@ -6,11 +6,34 @@ const closeButton = lightbox.querySelector('.lightbox-close');
 const previousButton = lightbox.querySelector('.lightbox-previous');
 const nextButton = lightbox.querySelector('.lightbox-next');
 const profileMenu = document.querySelector('[data-profile-menu]');
+const profileMenuToggle = document.querySelector('[data-profile-menu-toggle]');
+const profileMenuPanel = document.querySelector('[data-profile-menu-panel]');
 const profileMenuTrigger = document.querySelector('[data-open-profile-menu]');
 let activeIndex = 0;
 
-profileMenuTrigger.addEventListener('click', () => {
-  profileMenu.open = true;
+function setProfileMenuOpen(isOpen) {
+  profileMenu.classList.toggle('is-open', isOpen);
+  profileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+  profileMenuPanel.setAttribute('aria-hidden', String(!isOpen));
+}
+
+profileMenuToggle.addEventListener('click', () => {
+  setProfileMenuOpen(!profileMenu.classList.contains('is-open'));
+});
+
+profileMenuTrigger.addEventListener('click', (event) => {
+  event.stopPropagation();
+  setProfileMenuOpen(true);
+});
+
+document.addEventListener('click', (event) => {
+  if (!profileMenu.contains(event.target)) setProfileMenuOpen(false);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || !profileMenu.classList.contains('is-open')) return;
+  setProfileMenuOpen(false);
+  profileMenuToggle.focus();
 });
 
 function clearMedia() {

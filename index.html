@@ -15,10 +15,12 @@
 <body id="top">
   <header class="site-header">
     <div class="header-identity">
-      <details class="profile-menu" data-profile-menu>
-        <summary class="site-name">William Cannell</summary>
-        <a href="https://www.linkedin.com/in/william-cannell-21a094395/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </details>
+      <div class="profile-menu" data-profile-menu>
+        <button class="site-name profile-menu-toggle" type="button" aria-expanded="false" aria-controls="profile-menu-links" data-profile-menu-toggle>William Cannell</button>
+        <div class="profile-menu-panel" id="profile-menu-links" aria-hidden="true" data-profile-menu-panel>
+          <a href="https://www.linkedin.com/in/william-cannell-21a094395/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
       <div class="mode-switcher" role="group" aria-label="Portfolio view">
         <button class="mode-button is-active" type="button" data-show-gallery aria-pressed="true">Portfolio</button>
         <span aria-hidden="true">|</span>
