@@ -2,6 +2,7 @@ const items = [...document.querySelectorAll('.gallery-item')];
 const lightbox = document.querySelector('.lightbox');
 const fullImage = lightbox.querySelector('figure img');
 const fullVideo = lightbox.querySelector('figure video');
+const lightboxHeading = lightbox.querySelector('.lightbox-heading');
 const closeButton = lightbox.querySelector('.lightbox-close');
 const previousButton = lightbox.querySelector('.lightbox-previous');
 const nextButton = lightbox.querySelector('.lightbox-next');
@@ -53,12 +54,20 @@ function getMediaGroup(item) {
   return scope ? [...scope.querySelectorAll('.gallery-item')] : [item];
 }
 
+function getMediaCategory(item) {
+  const project = item.closest('[data-project-panel]');
+  const heading = project?.querySelector('.project-heading h2')
+    || item.closest('.portfolio-section')?.querySelector('.section-heading h2');
+  return heading?.textContent.trim() || 'Portfolio';
+}
+
 function showMedia(index) {
   activeIndex = (index + activeItems.length) % activeItems.length;
   const item = activeItems[activeIndex];
   const thumbnail = item.querySelector('img');
   const mediaLabel = item.dataset.mediaLabel || thumbnail?.alt || item.getAttribute('aria-label') || '';
   clearMedia();
+  lightboxHeading.textContent = getMediaCategory(item);
 
   if (item.dataset.video) {
     fullVideo.src = item.dataset.video;

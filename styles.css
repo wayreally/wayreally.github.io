@@ -316,6 +316,20 @@ footer a:focus-visible {
   cursor: pointer;
 }
 
+.lightbox-heading {
+  position: absolute;
+  z-index: 2;
+  top: 1.25rem;
+  left: 1.25rem;
+  max-width: calc(100% - 8rem);
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1rem, 1.7vw, 1.5rem);
+  font-weight: 460;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+}
+
 .lightbox-close {
   position: absolute;
   z-index: 2;
