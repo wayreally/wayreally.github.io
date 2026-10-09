@@ -10,6 +10,7 @@ const profileMenuToggle = document.querySelector('[data-profile-menu-toggle]');
 const profileMenuPanel = document.querySelector('[data-profile-menu-panel]');
 const profileMenuTrigger = document.querySelector('[data-open-profile-menu]');
 let activeIndex = 0;
+let activeItems = items;
 
 function setProfileMenuOpen(isOpen) {
   profileMenu.classList.toggle('is-open', isOpen);
@@ -47,9 +48,14 @@ function clearMedia() {
   fullImage.hidden = true;
 }
 
+function getMediaGroup(item) {
+  const scope = item.closest('[data-project-panel]') || item.closest('[data-portfolio-view]');
+  return scope ? [...scope.querySelectorAll('.gallery-item')] : [item];
+}
+
 function showMedia(index) {
-  activeIndex = (index + items.length) % items.length;
-  const item = items[activeIndex];
+  activeIndex = (index + activeItems.length) % activeItems.length;
+  const item = activeItems[activeIndex];
   const thumbnail = item.querySelector('img');
   const mediaLabel = item.dataset.mediaLabel || thumbnail?.alt || item.getAttribute('aria-label') || '';
   clearMedia();
@@ -70,8 +76,9 @@ function showMedia(index) {
   fullImage.hidden = false;
 }
 
-function openMedia(index) {
-  showMedia(index);
+function openMedia(item) {
+  activeItems = getMediaGroup(item);
+  showMedia(activeItems.indexOf(item));
   lightbox.showModal();
   document.body.style.overflow = 'hidden';
 }
@@ -80,8 +87,8 @@ function closeMedia() {
   lightbox.close();
 }
 
-items.forEach((item, index) => {
-  item.addEventListener('click', () => openMedia(index));
+items.forEach((item) => {
+  item.addEventListener('click', () => openMedia(item));
 });
 
 closeButton.addEventListener('click', closeMedia);
@@ -95,7 +102,7 @@ lightbox.addEventListener('click', (event) => {
 lightbox.addEventListener('close', () => {
   document.body.style.overflow = '';
   clearMedia();
-  items[activeIndex].focus();
+  activeItems[activeIndex].focus();
 });
 
 document.addEventListener('keydown', (event) => {
