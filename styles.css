@@ -445,7 +445,7 @@ body {
 }
 
 .site-header {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .header-identity {
@@ -462,6 +462,55 @@ body {
   letter-spacing: .12em;
   white-space: nowrap;
   text-transform: uppercase;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-menu summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.profile-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.profile-menu summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: .35rem;
+}
+
+.profile-menu > a {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 1.35rem);
+  left: 0;
+  min-width: 8rem;
+  padding: .75rem .9rem;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: rgba(17, 20, 22, .98);
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-decoration: none;
+}
+
+.profile-menu > a:hover,
+.profile-menu > a:focus-visible {
+  color: var(--accent);
+}
+
+.projects-active .profile-menu > a {
+  border-color: #dfe3e3;
+  color: #111416;
+  background: rgba(255, 255, 255, .98);
+}
+
+.projects-active .profile-menu > a:hover,
+.projects-active .profile-menu > a:focus-visible {
+  color: #4e7571;
 }
 
 .mode-switcher {
@@ -563,6 +612,17 @@ body {
 .site-view {
   flex: 0 0 50%;
   width: 50%;
+}
+
+body:not(.projects-active) .projects-view {
+  height: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.projects-active .portfolio-view {
+  height: 0;
+  overflow: hidden;
 }
 
 .projects-view {
@@ -1487,6 +1547,20 @@ body.projects-active {
 .portfolio-footer .repo-link {
   letter-spacing: .06em;
   text-transform: none;
+}
+
+#animation-projects .editorial-pair:last-child {
+  margin-bottom: 0;
+}
+
+#animation-projects .editorial-media-portrait {
+  width: min(100%, 18rem);
+  justify-self: center;
+}
+
+#animation-projects .editorial-media-portrait .project-video-preview {
+  aspect-ratio: 900 / 1956;
+  object-fit: contain;
 }
 
 @media (max-width: 560px) {

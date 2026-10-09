@@ -15,7 +15,10 @@
 <body id="top">
   <header class="site-header">
     <div class="header-identity">
-      <span class="site-name">William Cannell</span>
+      <details class="profile-menu" data-profile-menu>
+        <summary class="site-name">William Cannell</summary>
+        <a href="https://www.linkedin.com/in/william-cannell-21a094395/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </details>
       <div class="mode-switcher" role="group" aria-label="Portfolio view">
         <button class="mode-button is-active" type="button" data-show-gallery aria-pressed="true">Portfolio</button>
         <span aria-hidden="true">|</span>
@@ -143,7 +146,7 @@
     </section>
   </main>
 
-  <footer class="portfolio-footer"><a href="#top" aria-label="Back to top">William Cannell</a><a class="repo-link" href="https://github.com/wayreally/wayreally.github.io" target="_blank" rel="noopener noreferrer">View source on GitHub</a></footer>
+  <footer class="portfolio-footer"><a href="#top" data-open-profile-menu aria-label="Back to top and open profile links">William Cannell</a><a class="repo-link" href="https://github.com/wayreally/wayreally.github.io" target="_blank" rel="noopener noreferrer">View source on GitHub</a></footer>
       </div>
 
       <section class="site-view projects-view" aria-labelledby="projects-title" aria-hidden="true" inert data-projects-view>
@@ -518,7 +521,7 @@
               </section>
 
               <section class="editorial-pair editorial-pair-media-right">
-              <figure class="editorial-media editorial-media-right">
+              <figure class="editorial-media editorial-media-right editorial-media-portrait">
                 <button class="gallery-item project-shot video-item" type="button" data-video="assets/video/environment-weather.mp4" data-poster="assets/thumbs/environment-weather.jpg" data-media-label="Rain and weather effects in a 3D environment" aria-label="Play the rain environment study">
                   <video class="project-video-preview" muted playsinline preload="metadata" poster="assets/thumbs/environment-weather.jpg" aria-hidden="true">
                     <source src="assets/video/environment-weather.mp4" type="video/mp4">

@@ -5,7 +5,13 @@ const fullVideo = lightbox.querySelector('figure video');
 const closeButton = lightbox.querySelector('.lightbox-close');
 const previousButton = lightbox.querySelector('.lightbox-previous');
 const nextButton = lightbox.querySelector('.lightbox-next');
+const profileMenu = document.querySelector('[data-profile-menu]');
+const profileMenuTrigger = document.querySelector('[data-open-profile-menu]');
 let activeIndex = 0;
+
+profileMenuTrigger.addEventListener('click', () => {
+  profileMenu.open = true;
+});
 
 function clearMedia() {
   fullVideo.pause();
