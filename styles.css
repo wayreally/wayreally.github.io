@@ -19,6 +19,7 @@ html {
 }
 
 body {
+  min-height: 100vh;
   margin: 0;
   color: var(--ink);
   background:
@@ -438,6 +439,11 @@ body,
   transition: color 420ms ease, background-color 420ms ease, border-color 420ms ease;
 }
 
+body {
+  transition: color 680ms cubic-bezier(.72, 0, .2, 1),
+    background-color 680ms cubic-bezier(.72, 0, .2, 1);
+}
+
 .site-header {
   overflow: hidden;
 }
@@ -562,7 +568,7 @@ body,
 .projects-view {
   min-height: calc(100dvh - 72px);
   color: #171a1b;
-  background: #fff;
+  background: transparent;
 }
 
 .project-pages {
@@ -1031,7 +1037,7 @@ body,
 
 body.projects-active {
   color: #111416;
-  background: #fff;
+  background-color: #fff;
 }
 
 .projects-active .site-header {
