@@ -1,2 +1,0 @@
-VideosForProjects/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
-VideosForProjects/**/*.mkv filter=lfs diff=lfs merge=lfs -text
