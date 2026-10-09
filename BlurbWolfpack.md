@@ -1,0 +1,5 @@
+Wolfpack is a naval simulation project developed in Roblox Studio using Luau. The project explores the technical challenges involved in creating a large, navigable ocean environment with detailed ships, walkable interiors, and responsive first- and third-person controls.
+
+Its custom ocean system uses multiple levels of detail that follow the player’s ship, allowing the surrounding water to remain visually expansive while limiting the amount of geometry rendered at one time. The system includes procedural waves, water-height sampling, client-side ocean rendering, and server-authoritative ship physics.
+
+I also developed ship-relative movement, custom camera systems, collision handling, and procedural bow and wake effects. Wolfpack has served as a hands-on environment for working with real-time simulation, networking, performance optimization, procedural geometry, and the coordination of multiple interactive systems.

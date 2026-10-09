@@ -1,0 +1,10 @@
+3DCGI/
+Gear/
+Photogrammetry/
+*.tmp
+Thumbs.db
+.DS_Store
+
+# Local NavalSim source captures and editor proxies
+VideosForProjects/NavalSim/ToBeTrimmed/
+VideosForProjects/NavalSim/Trimmed/

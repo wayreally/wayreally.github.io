@@ -1,0 +1,5 @@
+Trading Lab is a Python-based research engine for developing and evaluating algorithmic cryptocurrency trading strategies. It processes historical market data across multiple timeframes and provides a structured environment for testing ideas before they are considered for live use.
+
+The project goes beyond basic backtesting by accounting for trading fees, data leakage, look-ahead bias, and other common sources of misleading results. Strategies can be evaluated through walk-forward testing, Monte Carlo analysis, and performance metrics designed to determine whether an idea should proceed or be discarded.
+
+I developed Trading Lab as both a practical research tool and a way to explore reliable decision-making under uncertain, data-driven conditions. The focus is not simply finding profitable historical results, but determining whether those results remain credible under more demanding validation.

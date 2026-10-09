@@ -1,0 +1,21 @@
+ PHOTOGRAMMETRY
+
+IMG1
+Residential Reconstruction
+
+By using blender to render 3D models generated with photogrammetry I can apply post-processing effects and customize the scene.
+
+IMG2
+Residential Reconstruction
+
+I captured this scene on an iPhone and imported the scene into blender to create mock-ups of a fence. 
+
+IMG3
+Residential Reconstruction
+
+This image shows the scene with the addition of a fence I created by hand. 
+
+IMG4
+Art Project
+
+This image is a pre-render preview of an art project I did using photo-scanned environments from around my house and various other locations. 
