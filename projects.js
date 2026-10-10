@@ -4,6 +4,7 @@ const galleryButton = document.querySelector('[data-show-gallery]');
 const portfolioView = document.querySelector('[data-portfolio-view]');
 const projectsView = document.querySelector('[data-projects-view]');
 const themeColor = document.querySelector('meta[name="theme-color"]');
+const favicon = document.querySelector('[data-favicon]');
 const projectButtons = [...document.querySelectorAll('[data-project-target]')];
 const projectPanels = [...document.querySelectorAll('[data-project-panel]')];
 const projectVideos = [...document.querySelectorAll('.project-video-preview')];
@@ -57,6 +58,7 @@ function setProjectsView(isProjectsView) {
   if (!isProjectsView) pauseProjectVideos();
   page.classList.toggle('projects-active', isProjectsView);
   themeColor.content = isProjectsView ? '#ffffff' : '#111416';
+  favicon.href = isProjectsView ? favicon.dataset.projectsIcon : favicon.dataset.portfolioIcon;
 
   projectsButton.classList.toggle('is-active', isProjectsView);
   projectsButton.setAttribute('aria-pressed', String(isProjectsView));
@@ -84,4 +86,3 @@ document.addEventListener('keydown', (event) => {
     projectsButton.focus();
   }
 });
-
