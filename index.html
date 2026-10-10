@@ -307,130 +307,117 @@
               <p class="editorial-deck">A real-time naval sandbox built around large ocean environments, detailed ships, and the systems that make a moving vessel feel inhabited.</p>
 
               <section class="editorial-pair editorial-pair-media-right">
-              <figure class="editorial-media editorial-media-right editorial-media-lead">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/sea-trials.mp4" data-poster="assets/thumbs/naval-simulator/sea-trials.jpg" data-media-label="Sea trials and docking footage" aria-label="Play sea trials and docking footage">
-                  <img src="assets/thumbs/naval-simulator/sea-trials.jpg" alt="Naval Simulator ship underway during sea trials" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Sea trials</strong><span>Handling, navigation, and docking.</span></figcaption>
-              </figure>
+              <div class="editorial-media-group">
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/1/wake-tuning.mp4" data-poster="assets/thumbs/naval-simulator/v2/wake-tuning.jpg" data-media-label="Early wave sampling and wake visualization" aria-label="Play the early wave sampling and wake visualization">
+                    <img src="assets/thumbs/naval-simulator/v2/wake-tuning.jpg" alt="Neon sampling points surrounding the ship during an early wave and wake test" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Wave debugging</strong><span>Early sampling points and wake visualization.</span></figcaption>
+                </figure>
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/1/ocean-prototype.mp4" data-poster="assets/thumbs/naval-simulator/v2/ocean-prototype.jpg" data-media-label="Early tiled-ocean prototype" aria-label="Play the early tiled-ocean prototype">
+                    <img src="assets/thumbs/naval-simulator/v2/ocean-prototype.jpg" alt="Early tiled-ocean prototype surrounding a Ticonderoga-class cruiser" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Ocean prototype</strong><span>Client-side geometry at naval scale.</span></figcaption>
+                </figure>
+              </div>
 
               <div class="editorial-copy">
-              <p class="editorial-index">01 / Ship handling</p>
-              <h3>Weight on the water</h3>
-              <p>The simulation begins with the relationship between the ship and the sea. Server-authoritative motion, tuned acceleration, and deliberate turning behavior give the vessel a sense of scale while keeping it responsive to the player.</p>
-              <p>Open-water runs and harbor approaches test the same system at different speeds, exposing how the hull settles, turns, and comes alongside the dock.</p>
+              <p class="editorial-index">01 / System foundations</p>
+              <h3>The Ship and the Sea</h3>
+              <p>The first task I undertook in this project was modeling my ship, a Ticonderoga-class guided-missile cruiser. After I had the model, I brought it into Roblox Studio and set up kinematics using a mathematical wave-surface model to determine the ship&rsquo;s vertical position at any point. On top of this, the ship uses spring physics to mimic the natural motion of a vessel atop a wave.</p>
+              <p>The second task was designing the ocean. I went through a few iterations before ultimately landing on triangle tiles. I achieved this by sampling my mathematical wave model at various points and using those points as vertices. Points closer to the player&rsquo;s ship are sampled more densely and updated faster. This allows me to avoid rendering the ocean on the server and optimize it for each client&rsquo;s machine.</p>
               </div>
               </section>
 
               <section class="editorial-pair editorial-pair-media-left">
-              <figure class="editorial-media editorial-media-left">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/bridge-radar.mp4" data-poster="assets/thumbs/naval-simulator/bridge-radar.jpg" data-media-label="Bridge and radar footage" aria-label="Play bridge and radar footage">
-                  <img src="assets/thumbs/naval-simulator/bridge-radar.jpg" alt="Naval Simulator bridge with an in-world tactical radar display" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Bridge &amp; radar</strong><span>The tactical display running in-world.</span></figcaption>
-              </figure>
+              <div class="editorial-media-group">
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/2/no-collision.mp4" data-poster="assets/thumbs/naval-simulator/v2/no-collision.jpg" data-media-label="Player movement before collision handling" aria-label="Play player movement before collision handling">
+                    <img src="assets/thumbs/naval-simulator/v2/no-collision.jpg" alt="Early ship movement test before full collision handling was added" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Early movement</strong><span>Camera movement before full collisions.</span></figcaption>
+                </figure>
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/2/radar-and-full-collisions.mp4" data-poster="assets/thumbs/naval-simulator/v2/full-collisions.jpg" data-media-label="Player movement with radar and full collision handling" aria-label="Play player movement with radar and full collision handling">
+                    <img src="assets/thumbs/naval-simulator/v2/full-collisions.jpg" alt="Ship movement test with radar and full collision handling enabled" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Full collision pass</strong><span>Movement, stairs, doors, and radar.</span></figcaption>
+                </figure>
+              </div>
 
               <div class="editorial-copy">
-              <p class="editorial-index">02 / Situational awareness</p>
-              <h3>The bridge as an interface</h3>
-              <p>The bridge connects first-person movement with the information needed to operate the ship. Radar contacts, range rings, headings, and target state are presented inside the world instead of separated into a conventional menu.</p>
-              <p>That approach keeps navigation and decision-making grounded in the vessel itself, whether the player is at a console or moving through the compartment.</p>
+              <p class="editorial-index">02 / A floating base</p>
+              <h3>The Player Is Not the Ship</h3>
+              <p>My second challenge was allowing the player to walk around the ship. In the Roblox engine, every player inherits a character model, and the camera is attached to this model. My game makes the player model invisible and sticks it to the ship, making it appear as though the camera is orbiting the ship itself. To integrate first-person movement within the ship, I had to create a new camera system, detaching the camera from the player model and positioning it inside the vessel. The WASD movement keys are rebound in first-person view to move this camera.</p>
+              <p>Once I had the camera set up, I had to deal with collisions, stairs, and doors. Rather than calculating collisions from the imported 3D ship model, I created simple collision volumes covering all surfaces on the ship. These serve as the actual collision model. This is much less computationally expensive and gives me more freedom when fixing collision bugs.</p>
               </div>
               </section>
 
               <section class="editorial-pair editorial-pair-media-right">
-              <figure class="editorial-media editorial-media-right">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/missile-camera.mp4" data-poster="assets/thumbs/naval-simulator/missile-camera.jpg" data-media-label="Guided missile camera footage" aria-label="Play guided missile camera footage">
-                  <img src="assets/thumbs/naval-simulator/missile-camera.jpg" alt="Tracking-camera view of a missile launched in Naval Simulator" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Missile camera</strong><span>A guided launch through impact.</span></figcaption>
-              </figure>
+              <div class="editorial-media-group">
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/3/missile-systems.mp4" data-poster="assets/thumbs/naval-simulator/v2/missile-systems.jpg" data-media-label="Missile firing and guidance test" aria-label="Play the missile firing and guidance test">
+                    <img src="assets/thumbs/naval-simulator/v2/missile-systems.jpg" alt="Missile camera tracking a launch toward another ship" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Missile systems</strong><span>Launch, guidance, and target tracking.</span></figcaption>
+                </figure>
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/5/ALLFUNCTIONS_EWARANDWEAPONS.mp4" data-poster="assets/thumbs/naval-simulator/v2/ewar-weapons.jpg" data-media-label="Integrated weapons and electronic warfare test" aria-label="Play the integrated weapons and electronic warfare test">
+                    <img src="assets/thumbs/naval-simulator/v2/ewar-weapons.jpg" alt="Integrated missile, gun, and electronic-warfare systems under test" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Integrated weapons</strong><span>Guns, missiles, CIWS, and EWAR.</span></figcaption>
+                </figure>
+              </div>
 
               <div class="editorial-copy">
-              <p class="editorial-index">03 / Weapons feedback</p>
-              <h3>Following the launch</h3>
-              <p>A dedicated camera follows the missile from launch through terminal guidance. The view makes the weapon system legible at speed and provides immediate feedback about tracking, trajectory, and impact.</p>
-              <p>It also creates a useful development tool: guidance behavior that is difficult to read from the ship becomes obvious when the camera travels with the projectile.</p>
+              <p class="editorial-index">03 / Weapons systems</p>
+              <h3>The Fun Part</h3>
+              <p>The third thing I integrated was the weapon systems. The Ticonderoga class carries a number of weapons; the most important to this project are the Mark 41 Vertical Launching System, Mark 45 five-inch guns, and Phalanx CIWS. While the Ticonderoga has additional armaments, these were the first to be integrated into my game. To get the weapons functional, I first had to develop a radar-targeting system. My system uses simple raycasts to determine what it can see and renders their endpoints to the player as a rudimentary terrain-detection system. If a raycast can see an enemy, that enemy is shown on the radar and can be targeted. By checking the coordinates of a targeted ship, I can calculate the angle needed to orient the gun mount and the ballistic trajectory needed to set its elevation. Firing the gun moves a bullet part along that trajectory, causing damage if it makes contact with a ship.</p>
+              <p>A bullet fired by the system is just a part with special properties; a missile is a little more complicated. A missile is its own entity, like a ship, with an identity and a radar signature. This allows players to monitor their own missiles and detect incoming missiles using radar, which becomes very important when the CIWS needs to track and shoot them down. The missile-firing system queries the radar in the same way as the gun system. Once it obtains the target&rsquo;s coordinates, it calculates and follows a trajectory. Having the missile obtain target information from the radar also allows me to integrate electronic-warfare systems such as jammers later on.</p>
+              <p>With these two systems in place, setting up the CIWS was just a matter of leveraging my existing gun-orientation code and doing some simple rigging on the CIWS model.</p>
               </div>
               </section>
 
               <section class="editorial-pair editorial-pair-media-left">
-              <figure class="editorial-media editorial-media-left">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/ship-interior.mp4" data-poster="assets/thumbs/naval-simulator/ship-interior.jpg" data-media-label="Ship exterior and walkable interior footage" aria-label="Play ship exterior and walkable interior footage">
-                  <img src="assets/thumbs/naval-simulator/ship-interior.jpg" alt="Player moving through the modeled interior of a ship in Naval Simulator" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Ship &amp; interior</strong><span>A stable space aboard a moving vessel.</span></figcaption>
-              </figure>
+              <div class="editorial-media-group">
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/4/BOILERROOM.mp4" data-poster="assets/thumbs/naval-simulator/v2/boiler-room.jpg" data-media-label="Boiler room and cargo-hold walkthrough" aria-label="Play the boiler room and cargo-hold walkthrough">
+                    <img src="assets/thumbs/naval-simulator/v2/boiler-room.jpg" alt="Player walking through the ship's detailed boiler-room interior" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Below decks</strong><span>Boiler room, supplies, and repairs.</span></figcaption>
+                </figure>
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/4/BRIDGE.mp4" data-poster="assets/thumbs/naval-simulator/v2/bridge.jpg" data-media-label="Remodeled bridge walkthrough" aria-label="Play the remodeled bridge walkthrough">
+                    <img src="assets/thumbs/naval-simulator/v2/bridge.jpg" alt="First-person view inside the remodeled three-console bridge" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>Remodeled bridge</strong><span>Three functional crew consoles.</span></figcaption>
+                </figure>
+              </div>
 
               <div class="editorial-copy">
-              <p class="editorial-index">04 / Ship-relative movement</p>
-              <h3>A moving place, not a moving prop</h3>
-              <p>The ship is designed to be occupied while underway. Ship-relative character movement and collision handling allow players to cross the deck and move through modeled compartments without losing the motion of the larger vessel.</p>
-              <p>Exterior scale and interior detail are treated as one continuous environment, supporting a shift from third-person navigation to close first-person exploration.</p>
+              <p class="editorial-index">04 / Details</p>
+              <h3>Interior Spaces Give the Ship Life</h3>
+              <p>Once I had the basic systems in place, it was time to work on detailing the interiors. First, I gave the ship a cargo hold and a boiler room. Repairs in the boiler room cost supplies, represented by stacked boxes in the cargo hold. This hold is also intended to house a helicopter in later versions. Working in this confined space was made much easier by using my collision volumes; calculating collisions from complex 3D models is buggy and computationally expensive, especially when building interiors. This was also a stress test for my door system and a chance to change the rendering engine so water does not render inside the cargo hold.</p>
+              <p>After tackling the cargo hold and boiler room, I remodeled the bridge interior. Designing the bridge became more than just a modeling job. The bridge should be the central gameplay location for the ship&rsquo;s crew, so it needed to be visually appealing and functional. I ended up with a three-console bridge: space for a captain, an electronic-warfare specialist, and a weapons specialist. After modeling the bridge, I made the screens interactive, allowing the captain to drive the ship and use the radar entirely in first person.</p>
               </div>
               </section>
 
               <section class="editorial-pair editorial-pair-media-right">
-              <figure class="editorial-media editorial-media-right">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/radar-visualization.mp4" data-poster="assets/thumbs/naval-simulator/radar-visualization.jpg" data-media-label="Radar visualization development footage" aria-label="Play radar visualization development footage">
-                  <img src="assets/thumbs/naval-simulator/radar-visualization.jpg" alt="Radar contacts and trails visualized during Naval Simulator development" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Radar visualization</strong><span>Contacts, trails, range, and heading.</span></figcaption>
-              </figure>
+              <div class="editorial-media-group editorial-media-group-single">
+                <figure class="editorial-media">
+                  <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/V2/5/3DRADAR.mp4" data-poster="assets/thumbs/naval-simulator/v2/3d-radar.jpg" data-media-label="Interactive 3D radar and electronic-warfare display" aria-label="Play the interactive 3D radar and electronic-warfare display">
+                    <img src="assets/thumbs/naval-simulator/v2/3d-radar.jpg" alt="Three-dimensional radar display with terrain-aware field of view and target controls" width="960" height="540" loading="lazy">
+                  </button>
+                  <figcaption><strong>3D radar</strong><span>Terrain, contacts, targeting, and jamming.</span></figcaption>
+                </figure>
+              </div>
 
               <div class="editorial-copy">
               <p class="editorial-index">05 / Sensor development</p>
-              <h3>Making contact data readable</h3>
-              <p>The radar view turns simulated contact data into an operator-facing picture. Range rings establish scale, heading marks preserve orientation, and trails reveal movement that a single blip cannot communicate.</p>
-              <p>Development overlays keep the underlying data visible while detection, identification, and display behavior are tuned together.</p>
-              </div>
-              </section>
-
-              <section class="editorial-pair editorial-pair-media-left">
-              <figure class="editorial-media editorial-media-left">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/missile-tracking.mp4" data-poster="assets/thumbs/naval-simulator/missile-tracking.jpg" data-media-label="Missile tracking development footage" aria-label="Play missile tracking development footage">
-                  <img src="assets/thumbs/naval-simulator/missile-tracking.jpg" alt="Missile guidance and radar information under test in Naval Simulator" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Missile tracking</strong><span>Guidance behavior under test.</span></figcaption>
-              </figure>
-
-              <div class="editorial-copy">
-              <p class="editorial-index">06 / Guidance systems</p>
-              <h3>From contact to intercept</h3>
-              <p>Missile guidance connects target acquisition, radar information, projectile state, and visible feedback. Each test run is an opportunity to compare what the system believes with what the projectile actually does.</p>
-              <p>The current footage captures that iterative stage, with diagnostic information left on-screen so tracking errors can be identified and corrected.</p>
-              </div>
-              </section>
-
-              <section class="editorial-pair editorial-pair-media-right">
-              <figure class="editorial-media editorial-media-right">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/wake-tuning.mp4" data-poster="assets/thumbs/naval-simulator/wake-tuning.jpg" data-media-label="Procedural wake tuning footage" aria-label="Play procedural wake tuning footage">
-                  <img src="assets/thumbs/naval-simulator/wake-tuning.jpg" alt="Diagnostic markers around a turning ship during wake-effect tuning" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Wake tuning</strong><span>Bow wave, spray, and foam placement.</span></figcaption>
-              </figure>
-
-              <div class="editorial-copy">
-              <p class="editorial-index">07 / Water effects</p>
-              <h3>A wake that explains motion</h3>
-              <p>Procedural bow and wake effects communicate speed, direction, and turning force before the player looks at an instrument. Diagnostic markers expose how those effects are positioned relative to the hull.</p>
-              <p>The system is tuned across straight runs and turns so spray and foam respond to the vessel instead of appearing as a fixed decoration.</p>
-              </div>
-              </section>
-
-              <section class="editorial-pair editorial-pair-media-left">
-              <figure class="editorial-media editorial-media-left">
-                <button class="gallery-item project-shot video-item" type="button" data-video="VideosForProjects/NavalSim/Web/ocean-prototype.mp4" data-poster="assets/thumbs/naval-simulator/ocean-prototype.jpg" data-media-label="Early procedural ocean prototype footage" aria-label="Play early procedural ocean prototype footage">
-                  <img src="assets/thumbs/naval-simulator/ocean-prototype.jpg" alt="Early tiled-ocean prototype in Roblox Studio" width="960" height="540" loading="lazy">
-                </button>
-                <figcaption><strong>Ocean prototype</strong><span>Early geometry and surface experiments.</span></figcaption>
-              </figure>
-
-              <div class="editorial-copy">
-              <p class="editorial-index">08 / Ocean foundation</p>
-              <h3>Building the horizon</h3>
-              <p>An early tiled-ocean prototype established the project&rsquo;s technical foundation. Level-of-detail geometry keeps the surrounding water broad enough for naval scale while concentrating detail near the player.</p>
-              <p>Wave shape, surface roughness, pitch, and roll were developed together, turning a flat test surface into an environment capable of carrying the rest of the simulation.</p>
+              <h3>Making Contact Data Readable and Jammable</h3>
+              <p>Unsatisfied with my first-person radar interaction, I dove into a 3D radar representation. This view renders a 3D model of radar space, complete with a field-of-view circle that conforms to blocking terrain. On this foundation, I started building basic electronic-warfare systems. The jammer floods a targeted area with radar noise, showing false positives on radars within the area and making effective targeting impossible. This affects both ships and missiles.</p>
+              <p>This system is prettier, easier to interact with, and less computationally expensive than my previous 2D radar representations. Jammers and radar systems can also be damaged or knocked offline by successive hits.</p>
               </div>
               </section>
             </div>
