@@ -948,7 +948,7 @@ body:not(.projects-active) .projects-view {
 
 .editorial-media-group {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(.8rem, 1.7vw, 1.35rem);
   align-items: start;
   min-width: 0;
@@ -1646,12 +1646,6 @@ body.projects-active {
     grid-row: auto;
     width: 100%;
     margin: 0;
-  }
-}
-
-@media (max-width: 520px) {
-  .editorial-media-group {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
 
