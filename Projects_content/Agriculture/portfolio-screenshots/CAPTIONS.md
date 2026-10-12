@@ -1,11 +1,6 @@
-# AgriSwarm portfolio screenshots
+# Agricultural Drone Fleet portfolio images
 
-All dashboard content is illustrative. Identifiers, values, locations, and operational details are removed or generalized for the public portfolio.
+The public selection shows aircraft in a virtual flight environment. These images demonstrate simulation work on an ongoing research prototype.
 
-- **01 - Product overview:** A unified workspace for configuring, observing, and comparing agricultural scenarios.
-- **02 - Farm editor:** A visual environment for shaping a representative farm and its resources.
-- **03 - Run comparison:** A high-level comparison of sample outcomes across two scenarios.
-- **04 - Geographic farm:** A representative farm area shown in a generalized map context.
-- **05 - Live simulation:** An agricultural operation evolving inside the visual simulator.
-- **06 - Flight simulation (wide):** A virtual aircraft airborne in the test environment.
-- **07 - Flight simulation (close):** A closer view of the same simulated flight.
+- **06 - Flight study:** A wide view of the virtual aircraft and its simulation environment.
+- **07 - Simulated flight:** A closer view of the virtual aircraft airborne in Gazebo.

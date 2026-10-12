@@ -1,5 +1,5 @@
-AgriSwarm is an ongoing research project exploring a source-agnostic agricultural operations platform. It considers how field information, mission planning, fleet coordination, and feedback can contribute to a living agricultural digital twin.
+Agricultural Drone Fleet is an ongoing research prototype exploring how autonomous aircraft could support agriculture.
 
-The current work combines a visual operations workspace with simulation and virtual-flight demonstrations. Public materials focus on the product experience and overall vision; implementation details, internal models, system architecture, and operational methods are intentionally excluded.
+My work brings together Python development, visual interface design, and aircraft simulation with PX4 and Gazebo. The selected flight studies demonstrate progress in a virtual environment and provide a setting for continued experimentation.
 
-The long-term direction is a flexible environment in which farms can observe changing conditions, compare decisions, and coordinate autonomous tools without being tied to a single vehicle, sensor, or software vendor.
+I am interested in where robotics, aviation, and agriculture meet, and how useful tools can fit the needs of people working in the field. The project connects that interest with my business management background and FAA Part 107 qualification.
